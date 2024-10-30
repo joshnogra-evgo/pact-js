@@ -35,19 +35,17 @@ describe('GraphQL example', () => {
         .uponReceiving('a hello request')
         .withQuery(
           `
-          query HelloQuery {
-            hello
+          query GetCurrentDriver {
+            getCurrentDriver
           }
         `
         )
-        .withOperation('HelloQuery')
+        .withOperation('GetCurrentDriver')
         .withRequest({
           path: '/graphql',
           method: 'POST',
         })
-        .withVariables({
-          foo: 'bar',
-        })
+        .withVariables({})
         .willRespondWith({
           status: 200,
           headers: {
@@ -55,7 +53,7 @@ describe('GraphQL example', () => {
           },
           body: {
             data: {
-              hello: like('Hello world!'),
+              getCurrentDriver: like('Hello world!'),
             },
           },
         });
@@ -64,7 +62,7 @@ describe('GraphQL example', () => {
 
     it('returns the correct response', () => {
       return expect(query()).to.eventually.deep.equal({
-        hello: 'Hello world!',
+        getCurrentDriver: 'Hello world!',
       });
     });
 

@@ -18,13 +18,11 @@ export function query(): any {
   return client
     .query({
       query: gql`
-        query HelloQuery {
-          hello
+        query GetCurrentDriver {
+          getCurrentDriver
         }
       `,
-      variables: {
-        foo: 'bar',
-      },
+      variables: {},
     })
     .then((result: any) => result.data);
 }
